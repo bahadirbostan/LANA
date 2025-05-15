@@ -72,12 +72,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 void yyerror(const char *s);
 int yylex();
 extern int yylineno;
 
-#line 81 "parser.tab.c"
+#line 82 "parser.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -557,12 +558,12 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    62,    62,    66,    67,    71,    72,    73,    74,    75,
-      76,    77,    78,    79,    80,    81,    82,    83,    84,    85,
-      86,    87,    88,    91,    93,    94,    97,    99,   103,   104,
-     108,   109,   110,   111,   115,   116,   117,   118,   119,   120,
-     121,   122,   123,   124,   125,   126,   127,   128,   129,   130,
-     131,   132,   133,   134
+       0,    65,    65,    69,    70,    74,    75,    76,    77,    78,
+      79,    80,    81,    82,    83,    84,    85,    86,    87,    88,
+      89,    90,    91,    94,    96,    97,   100,   102,   106,   107,
+     111,   112,   113,   114,   118,   119,   120,   121,   122,   123,
+     124,   125,   126,   127,   128,   129,   130,   131,   132,   133,
+     134,   135,   136,   137
 };
 #endif
 
@@ -631,7 +632,7 @@ static const yytype_int8 yydefact[] =
 {
        4,     0,     2,     1,     0,     0,     0,     0,     0,     0,
        0,    10,     0,     0,     0,     0,     0,     0,     0,     3,
-       0,    26,    49,    50,    51,    52,     0,     0,     0,     0,
+       0,    26,    49,    50,    52,    51,     0,     0,     0,     0,
        0,    23,     0,     8,     0,    11,    12,    13,    14,    15,
       16,    17,     5,     0,    27,    28,    48,    30,    31,    32,
       33,     0,     0,     0,     0,     0,     0,     0,     0,     0,
@@ -1223,115 +1224,235 @@ yyreduce:
   switch (yyn)
     {
   case 5: /* statement: ID ASSIGN expr  */
-#line 71 "parser.y"
-                                      { printf("Atama: %s\n", (yyvsp[-2].sval)); }
-#line 1229 "parser.tab.c"
+#line 74 "parser.y"
+                                      { printf("Atama: %s = %d\n", (yyvsp[-2].sval), (yyvsp[0].ival)); }
+#line 1230 "parser.tab.c"
     break;
 
   case 6: /* statement: ID '(' args ')'  */
-#line 72 "parser.y"
+#line 75 "parser.y"
                                      { printf("Fonksiyon cagiri: %s\n", (yyvsp[-3].sval)); }
-#line 1235 "parser.tab.c"
+#line 1236 "parser.tab.c"
     break;
 
   case 7: /* statement: DRAW_CIRCLE expr expr expr  */
-#line 73 "parser.y"
+#line 76 "parser.y"
                                      { printf("Daire ciziliyor\n"); }
-#line 1241 "parser.tab.c"
+#line 1242 "parser.tab.c"
     break;
 
   case 8: /* statement: DRAW_LINE expr  */
-#line 74 "parser.y"
+#line 77 "parser.y"
                                      { printf("Cizgi ciziliyor\n"); }
-#line 1247 "parser.tab.c"
+#line 1248 "parser.tab.c"
     break;
 
   case 9: /* statement: DRAW_RECTANGLE expr expr expr expr  */
-#line 75 "parser.y"
+#line 78 "parser.y"
                                          { printf("Dikdortgen ciziliyor\n"); }
-#line 1253 "parser.tab.c"
+#line 1254 "parser.tab.c"
     break;
 
   case 10: /* statement: DRAW_TRIANGLE  */
-#line 76 "parser.y"
+#line 79 "parser.y"
                                      { printf("Ucgen ciziliyor\n"); }
-#line 1259 "parser.tab.c"
+#line 1260 "parser.tab.c"
     break;
 
   case 11: /* statement: CIRCLE_COLOR expr  */
-#line 77 "parser.y"
-                                    { printf("Daire rengi ayarlandi\n"); }
-#line 1265 "parser.tab.c"
+#line 80 "parser.y"
+                                     { printf("Daire rengi ayarlandi\n"); }
+#line 1266 "parser.tab.c"
     break;
 
   case 12: /* statement: LINE_COLOR expr  */
-#line 78 "parser.y"
-                                    { printf("Cizgi rengi ayarlandi\n"); }
-#line 1271 "parser.tab.c"
+#line 81 "parser.y"
+                                     { printf("Cizgi rengi ayarlandi\n"); }
+#line 1272 "parser.tab.c"
     break;
 
   case 13: /* statement: RECTANGLE_COLOR expr  */
-#line 79 "parser.y"
-                                    { printf("Dikdortgen rengi ayarlandi\n"); }
-#line 1277 "parser.tab.c"
+#line 82 "parser.y"
+                                     { printf("Dikdortgen rengi ayarlandi\n"); }
+#line 1278 "parser.tab.c"
     break;
 
   case 14: /* statement: TRIANGLE_COLOR expr  */
-#line 80 "parser.y"
-                                    { printf("Ucgen rengi ayarlandi\n"); }
-#line 1283 "parser.tab.c"
+#line 83 "parser.y"
+                                     { printf("Ucgen rengi ayarlandi\n"); }
+#line 1284 "parser.tab.c"
     break;
 
   case 15: /* statement: PRINT expr  */
-#line 81 "parser.y"
-                                    { printf("Yazdiriliyor\n"); }
-#line 1289 "parser.tab.c"
+#line 84 "parser.y"
+                                     { printf("%d", (yyvsp[0].ival)); }
+#line 1290 "parser.tab.c"
     break;
 
   case 16: /* statement: PRINTLN expr  */
-#line 82 "parser.y"
-                                    { printf("Yazdiriliyor ve yeni satira geciliyor\n"); }
-#line 1295 "parser.tab.c"
+#line 85 "parser.y"
+                                     { printf("%d\n", (yyvsp[0].ival)); }
+#line 1296 "parser.tab.c"
     break;
 
   case 17: /* statement: VALUE expr  */
-#line 83 "parser.y"
-                                    { printf("Deger aliniyor\n"); }
-#line 1301 "parser.tab.c"
+#line 86 "parser.y"
+                                     { printf("Deger aliniyor: %d\n", (yyvsp[0].ival)); }
+#line 1302 "parser.tab.c"
     break;
 
   case 18: /* statement: IF expr THEN statement  */
-#line 84 "parser.y"
+#line 87 "parser.y"
                                                    { printf("Kosullu ifade (if-then)\n"); }
-#line 1307 "parser.tab.c"
+#line 1308 "parser.tab.c"
     break;
 
   case 19: /* statement: IF expr THEN statement ELSE statement  */
-#line 85 "parser.y"
+#line 88 "parser.y"
                                              { printf("Kosullu ifade\n"); }
-#line 1313 "parser.tab.c"
+#line 1314 "parser.tab.c"
     break;
 
   case 20: /* statement: WHILE expr WHILECOND statements ENDWHILE  */
-#line 86 "parser.y"
+#line 89 "parser.y"
                                                { printf("Dongu calisiyor\n"); }
-#line 1319 "parser.tab.c"
+#line 1320 "parser.tab.c"
     break;
 
   case 21: /* statement: FUNC ID params ':' statements RETURN expr ENDFUNC  */
-#line 87 "parser.y"
+#line 90 "parser.y"
                                                         { printf("Fonksiyon tanimi: %s\n", (yyvsp[-6].sval)); }
-#line 1325 "parser.tab.c"
+#line 1326 "parser.tab.c"
     break;
 
   case 22: /* statement: IF KEY_PRESSED keycode THEN statement  */
-#line 88 "parser.y"
+#line 91 "parser.y"
                                             { printf("Tus kontrolu\n"); }
-#line 1331 "parser.tab.c"
+#line 1332 "parser.tab.c"
+    break;
+
+  case 34: /* expr: expr PLUS expr  */
+#line 118 "parser.y"
+                          { (yyval.ival) = (yyvsp[-2].ival) + (yyvsp[0].ival); }
+#line 1338 "parser.tab.c"
+    break;
+
+  case 35: /* expr: expr MINUS expr  */
+#line 119 "parser.y"
+                          { (yyval.ival) = (yyvsp[-2].ival) - (yyvsp[0].ival); }
+#line 1344 "parser.tab.c"
+    break;
+
+  case 36: /* expr: expr MUL expr  */
+#line 120 "parser.y"
+                          { (yyval.ival) = (yyvsp[-2].ival) * (yyvsp[0].ival); }
+#line 1350 "parser.tab.c"
+    break;
+
+  case 37: /* expr: expr DIV expr  */
+#line 121 "parser.y"
+                          { (yyval.ival) = (yyvsp[-2].ival) / (yyvsp[0].ival); }
+#line 1356 "parser.tab.c"
+    break;
+
+  case 38: /* expr: expr MOD expr  */
+#line 122 "parser.y"
+                          { (yyval.ival) = (yyvsp[-2].ival) % (yyvsp[0].ival); }
+#line 1362 "parser.tab.c"
+    break;
+
+  case 39: /* expr: expr POW expr  */
+#line 123 "parser.y"
+                          { (yyval.ival) = (int)pow((yyvsp[-2].ival), (yyvsp[0].ival)); }
+#line 1368 "parser.tab.c"
+    break;
+
+  case 40: /* expr: expr EQ expr  */
+#line 124 "parser.y"
+                          { (yyval.ival) = ((yyvsp[-2].ival) == (yyvsp[0].ival)); }
+#line 1374 "parser.tab.c"
+    break;
+
+  case 41: /* expr: expr NEQ expr  */
+#line 125 "parser.y"
+                          { (yyval.ival) = ((yyvsp[-2].ival) != (yyvsp[0].ival)); }
+#line 1380 "parser.tab.c"
+    break;
+
+  case 42: /* expr: expr LT expr  */
+#line 126 "parser.y"
+                          { (yyval.ival) = ((yyvsp[-2].ival) < (yyvsp[0].ival)); }
+#line 1386 "parser.tab.c"
+    break;
+
+  case 43: /* expr: expr GT expr  */
+#line 127 "parser.y"
+                          { (yyval.ival) = ((yyvsp[-2].ival) > (yyvsp[0].ival)); }
+#line 1392 "parser.tab.c"
+    break;
+
+  case 44: /* expr: expr LE expr  */
+#line 128 "parser.y"
+                          { (yyval.ival) = ((yyvsp[-2].ival) <= (yyvsp[0].ival)); }
+#line 1398 "parser.tab.c"
+    break;
+
+  case 45: /* expr: expr GE expr  */
+#line 129 "parser.y"
+                          { (yyval.ival) = ((yyvsp[-2].ival) >= (yyvsp[0].ival)); }
+#line 1404 "parser.tab.c"
+    break;
+
+  case 46: /* expr: expr AND expr  */
+#line 130 "parser.y"
+                          { (yyval.ival) = (yyvsp[-2].ival) && (yyvsp[0].ival); }
+#line 1410 "parser.tab.c"
+    break;
+
+  case 47: /* expr: expr OR expr  */
+#line 131 "parser.y"
+                          { (yyval.ival) = (yyvsp[-2].ival) || (yyvsp[0].ival); }
+#line 1416 "parser.tab.c"
+    break;
+
+  case 48: /* expr: NOT expr  */
+#line 132 "parser.y"
+                          { (yyval.ival) = !(yyvsp[0].ival); }
+#line 1422 "parser.tab.c"
+    break;
+
+  case 49: /* expr: INT  */
+#line 133 "parser.y"
+                          { (yyval.ival) = (yyvsp[0].ival); }
+#line 1428 "parser.tab.c"
+    break;
+
+  case 50: /* expr: FLOAT  */
+#line 134 "parser.y"
+                          { (yyval.ival) = (int)(yyvsp[0].fval); }
+#line 1434 "parser.tab.c"
+    break;
+
+  case 51: /* expr: STRING  */
+#line 135 "parser.y"
+                          { printf("%s", (yyvsp[0].sval)); free((yyvsp[0].sval)); (yyval.ival) = 0; }
+#line 1440 "parser.tab.c"
+    break;
+
+  case 52: /* expr: ID  */
+#line 136 "parser.y"
+                          { (yyval.ival) = 0; /* değişken değeri örneği */ }
+#line 1446 "parser.tab.c"
+    break;
+
+  case 53: /* expr: '(' expr ')'  */
+#line 137 "parser.y"
+                          { (yyval.ival) = (yyvsp[-1].ival); }
+#line 1452 "parser.tab.c"
     break;
 
 
-#line 1335 "parser.tab.c"
+#line 1456 "parser.tab.c"
 
       default: break;
     }
@@ -1524,7 +1645,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 137 "parser.y"
+#line 140 "parser.y"
 
 
 void yyerror(const char *s) {

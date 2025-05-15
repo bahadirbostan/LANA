@@ -463,7 +463,7 @@ char *yytext;
 #include "parser.tab.h"
 #include <stdlib.h>
 #include <string.h>
-//int yylineno = 1;
+
 #line 467 "lex.yy.c"
 #line 468 "lex.yy.c"
 
@@ -766,147 +766,140 @@ case 5:
 YY_RULE_SETUP
 #line 17 "lexer.l"
 {
-                                  yylval.sval = strdup(yytext);
-                                  /* Anahtar kelimeleri ayırt */
-                                  if (strcmp(yytext, "ve") == 0) return AND;
-                                  else if (strcmp(yytext, "veya") == 0) return OR;
-                                  else if (strcmp(yytext, "degil") == 0) return NOT;
-
-                                  else if (strcmp(yytext, "eger") == 0) return IF;
-                                  else if (strcmp(yytext, "ise") == 0) return THEN;
-                                  else if (strcmp(yytext, "degilseEger") == 0) return ELSE;
-
-                                  else if (strcmp(yytext, "dongu") == 0) return WHILE;
-                                  else if (strcmp(yytext, "iken") == 0) return WHILECOND;
-                                  else if (strcmp(yytext, "neki") == 0) return ENDWHILE;
-
-                                  else if (strcmp(yytext, "yazdir") == 0) return PRINT;
-                                  else if (strcmp(yytext, "yazdirln") == 0) return PRINTLN;
-                                  else if (strcmp(yytext, "deger") == 0) return VALUE;
-
-                                  else if (strcmp(yytext, "fonk") == 0) return FUNC;
-                                  else if (strcmp(yytext, "knof") == 0) return ENDFUNC;
-                                  else if (strcmp(yytext, "dondur") == 0) return RETURN;
-
-                                  else if (strcmp(yytext, "daire_ciz") == 0) return DRAW_CIRCLE;
-                                  else if (strcmp(yytext, "cizgi_ciz") == 0) return DRAW_LINE;
-                                  else if (strcmp(yytext, "daire_renk") == 0) return CIRCLE_COLOR;
-                                  else if (strcmp(yytext, "cizgi_renk") == 0) return LINE_COLOR;
-                                  else if (strcmp(yytext, "ucgen_ciz") == 0) return DRAW_TRIANGLE;
-                                  else if (strcmp(yytext, "ucgen_renk") == 0) return TRIANGLE_COLOR;
-                                  else if (strcmp(yytext, "dikdortgen_ciz") == 0) return DRAW_RECTANGLE;
-
-                                  else if (strcmp(yytext, "tus_basildi") == 0) return KEY_PRESSED;
-                                  else if (strcmp(yytext, "TUS_YUKARI") == 0) return KEY_UP;
-                                  else if (strcmp(yytext, "TUS_ASAGI") == 0) return KEY_DOWN;
-                                  else if (strcmp(yytext, "TUS_SOLA") == 0) return KEY_LEFT;
-                                  else if (strcmp(yytext, "TUS_SAGA") == 0) return KEY_RIGHT;
-
-                                  else return ID;
-                              }
+    yylval.sval = strdup(yytext);
+    if (strcmp(yytext, "ve") == 0) return AND;
+    else if (strcmp(yytext, "veya") == 0) return OR;
+    else if (strcmp(yytext, "degil") == 0) return NOT;
+    else if (strcmp(yytext, "eger") == 0) return IF;
+    else if (strcmp(yytext, "ise") == 0) return THEN;
+    else if (strcmp(yytext, "degilseEger") == 0) return ELSE;
+    else if (strcmp(yytext, "dongu") == 0) return WHILE;
+    else if (strcmp(yytext, "iken") == 0) return WHILECOND;
+    else if (strcmp(yytext, "neki") == 0) return ENDWHILE;
+    else if (strcmp(yytext, "yazdir") == 0) return PRINT;
+    else if (strcmp(yytext, "yazdirln") == 0) return PRINTLN;
+    else if (strcmp(yytext, "deger") == 0) return VALUE;
+    else if (strcmp(yytext, "fonk") == 0) return FUNC;
+    else if (strcmp(yytext, "knof") == 0) return ENDFUNC;
+    else if (strcmp(yytext, "dondur") == 0) return RETURN;
+    else if (strcmp(yytext, "daire_ciz") == 0) return DRAW_CIRCLE;
+    else if (strcmp(yytext, "cizgi_ciz") == 0) return DRAW_LINE;
+    else if (strcmp(yytext, "daire_renk") == 0) return CIRCLE_COLOR;
+    else if (strcmp(yytext, "cizgi_renk") == 0) return LINE_COLOR;
+    else if (strcmp(yytext, "dikdortgen_ciz") == 0) return DRAW_RECTANGLE;
+    else if (strcmp(yytext, "ucgen_ciz") == 0) return DRAW_TRIANGLE;
+    else if (strcmp(yytext, "dikdortgen_renk") == 0) return RECTANGLE_COLOR;
+    else if (strcmp(yytext, "ucgen_renk") == 0) return TRIANGLE_COLOR;
+    else if (strcmp(yytext, "tus_basildi") == 0) return KEY_PRESSED;
+    else if (strcmp(yytext, "TUS_YUKARI") == 0) return KEY_UP;
+    else if (strcmp(yytext, "TUS_ASAGI") == 0) return KEY_DOWN;
+    else if (strcmp(yytext, "TUS_SOLA") == 0) return KEY_LEFT;
+    else if (strcmp(yytext, "TUS_SAGA") == 0) return KEY_RIGHT;
+    else return ID;
+}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 57 "lexer.l"
+#line 50 "lexer.l"
 { return ASSIGN; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 58 "lexer.l"
+#line 51 "lexer.l"
 { return EQ; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 59 "lexer.l"
+#line 52 "lexer.l"
 { return NEQ; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 60 "lexer.l"
+#line 53 "lexer.l"
 { return LE; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 61 "lexer.l"
+#line 54 "lexer.l"
 { return GE; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 62 "lexer.l"
+#line 55 "lexer.l"
 { return LT; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 63 "lexer.l"
+#line 56 "lexer.l"
 { return GT; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 65 "lexer.l"
+#line 58 "lexer.l"
 { return PLUS; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 66 "lexer.l"
+#line 59 "lexer.l"
 { return MINUS; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 67 "lexer.l"
+#line 60 "lexer.l"
 { return MUL; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 68 "lexer.l"
+#line 61 "lexer.l"
 { return DIV; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 69 "lexer.l"
+#line 62 "lexer.l"
 { return MOD; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 70 "lexer.l"
+#line 63 "lexer.l"
 { return POW; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 72 "lexer.l"
+#line 65 "lexer.l"
 { return '('; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 73 "lexer.l"
+#line 66 "lexer.l"
 { return ')'; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 74 "lexer.l"
+#line 67 "lexer.l"
 { return ','; }
 	YY_BREAK
 case 22:
 /* rule 22 can match eol */
 YY_RULE_SETUP
-#line 76 "lexer.l"
+#line 69 "lexer.l"
 { yylineno++; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 77 "lexer.l"
+#line 70 "lexer.l"
 { /* boşlukları yoksay */ }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 79 "lexer.l"
+#line 72 "lexer.l"
 { return *yytext; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 81 "lexer.l"
+#line 74 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 909 "lex.yy.c"
+#line 902 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1911,7 +1904,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 81 "lexer.l"
+#line 74 "lexer.l"
 
 
 int yywrap(void) {

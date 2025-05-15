@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 void yyerror(const char *s);
 int yylex();
@@ -54,6 +55,8 @@ extern int yylineno;
 %right POW
 %right NOT
 
+%type <ival> expr
+
 %start program
 
 %%
@@ -64,23 +67,23 @@ program:
 
 statements:
     statements statement
-    | /* boş */
+    | 
     ;
 
 statement:
-    ID ASSIGN expr                    { printf("Atama: %s\n", $1); }
+    ID ASSIGN expr                    { printf("Atama: %s = %d\n", $1, $3); }
     | ID '(' args ')'                { printf("Fonksiyon cagiri: %s\n", $1); }
     | DRAW_CIRCLE expr expr expr     { printf("Daire ciziliyor\n"); }
     | DRAW_LINE expr                 { printf("Cizgi ciziliyor\n"); }
     | DRAW_RECTANGLE expr expr expr expr { printf("Dikdortgen ciziliyor\n"); }
     | DRAW_TRIANGLE                  { printf("Ucgen ciziliyor\n"); }
-    | CIRCLE_COLOR expr             { printf("Daire rengi ayarlandi\n"); }
-    | LINE_COLOR expr               { printf("Cizgi rengi ayarlandi\n"); }
-    | RECTANGLE_COLOR expr          { printf("Dikdortgen rengi ayarlandi\n"); }
-    | TRIANGLE_COLOR expr           { printf("Ucgen rengi ayarlandi\n"); }
-    | PRINT expr                    { printf("Yazdiriliyor\n"); }
-    | PRINTLN expr                  { printf("Yazdiriliyor ve yeni satira geciliyor\n"); }
-    | VALUE expr                    { printf("Deger aliniyor\n"); }
+    | CIRCLE_COLOR expr              { printf("Daire rengi ayarlandi\n"); }
+    | LINE_COLOR expr                { printf("Cizgi rengi ayarlandi\n"); }
+    | RECTANGLE_COLOR expr           { printf("Dikdortgen rengi ayarlandi\n"); }
+    | TRIANGLE_COLOR expr            { printf("Ucgen rengi ayarlandi\n"); }
+    | PRINT expr                     { printf("%d", $2); }
+    | PRINTLN expr                   { printf("%d\n", $2); }
+    | VALUE expr                     { printf("Deger aliniyor: %d\n", $2); }
     | IF expr THEN statement %prec LOWER_THAN_ELSE { printf("Kosullu ifade (if-then)\n"); }
     | IF expr THEN statement ELSE statement  { printf("Kosullu ifade\n"); }
     | WHILE expr WHILECOND statements ENDWHILE { printf("Dongu calisiyor\n"); }
@@ -89,13 +92,13 @@ statement:
     ;
 
 params:
-    /* boş */
+   
     | ID
     | ID ID
     ;
 
 args:
-    /* boş */
+   
     | arg_list
     ;
 
@@ -112,26 +115,26 @@ keycode:
     ;
 
 expr:
-    expr PLUS expr
-    | expr MINUS expr
-    | expr MUL expr
-    | expr DIV expr
-    | expr MOD expr
-    | expr POW expr
-    | expr EQ expr
-    | expr NEQ expr
-    | expr LT expr
-    | expr GT expr
-    | expr LE expr
-    | expr GE expr
-    | expr AND expr
-    | expr OR expr
-    | NOT expr
-    | INT
-    | FLOAT
-    | ID
-    | STRING
-    | '(' expr ')'
+    expr PLUS expr        { $$ = $1 + $3; }
+    | expr MINUS expr     { $$ = $1 - $3; }
+    | expr MUL expr       { $$ = $1 * $3; }
+    | expr DIV expr       { $$ = $1 / $3; }
+    | expr MOD expr       { $$ = $1 % $3; }
+    | expr POW expr       { $$ = (int)pow($1, $3); }
+    | expr EQ expr        { $$ = ($1 == $3); }
+    | expr NEQ expr       { $$ = ($1 != $3); }
+    | expr LT expr        { $$ = ($1 < $3); }
+    | expr GT expr        { $$ = ($1 > $3); }
+    | expr LE expr        { $$ = ($1 <= $3); }
+    | expr GE expr        { $$ = ($1 >= $3); }
+    | expr AND expr       { $$ = $1 && $3; }
+    | expr OR expr        { $$ = $1 || $3; }
+    | NOT expr            { $$ = !$2; }
+    | INT                 { $$ = $1; }
+    | FLOAT               { $$ = (int)$1; }
+    | STRING              { printf("%s", $1); free($1); $$ = 0; }
+    | ID                  { $$ = 0;}
+    | '(' expr ')'        { $$ = $2; }
     ;
 
 %%
