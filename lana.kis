@@ -1,0 +1,22 @@
+-- Bu bir yorum satırıdır
+x <-> 5
+y <-> 3.2
+
+yazdirln x
+yazdir y
+
+eger x > 3 ise
+    yazdirln "x büyüktür 3"
+degilseEger
+    yazdirln "x küçük veya eşittir 3"
+
+daire_ciz 100 200 50
+cizgi_ciz 300
+
+fonk topla a b:
+    yazdirln "Toplama fonksiyonu çalıştı"
+    dondur a + b
+knof
+
+z <-> topla(4, 6)
+yazdirln z

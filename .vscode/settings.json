@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.dbclient-js": "javascript",
+        "stdio.h": "c"
+    }
+}
